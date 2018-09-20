@@ -49,3 +49,8 @@ IF file('local.properties').exists()
 ELSEIF file('gradle-local.properties').exists()
 ELSE file('gradle.properties')
 ```
+```groovy
+bintray.user=bintray_username
+bintray.apiKey=bintray_apikey
+bintray.gpg.password=bintray_gpg_password
+```
