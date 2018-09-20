@@ -5,6 +5,17 @@
 apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
 ```
 
+Dependent build script:
+```groovy
+buildscript {
+    ...
+    dependencies {
+        ...
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+    }
+}
+```
+
 Dependent custom properties:
 ```groovy
 ext {
