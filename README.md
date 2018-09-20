@@ -35,6 +35,6 @@ ext {
 Secret properties file:
 ```groovy
 IF file('local.properties').exists()
-ELSE IF file('gradle-local.properties').exists()
+ELSEIF file('gradle-local.properties').exists()
 ELSE file('gradle.properties')
 ```
