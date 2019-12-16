@@ -2,7 +2,9 @@
 
 积累了一些实用的工具和脚本，目前发布了下面这些——
 
-[TOC]
+* **bintray-upload-normal.gradle**：一个通过 Bintray 向 Maven 中央仓库发布项目的 Gradle 脚本。
+
+---
 
 ## bintray-upload-normal.gradle
 
