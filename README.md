@@ -84,7 +84,7 @@ bintray.gpg.password=bintray_gpg_password
 
 一个完整的 build.gradle 结构示例（别忘了还需要一个额外的 properties 文件）——
 
-```grooay
+```groovy
 buildscript {
     repositories {
         jcenter()
