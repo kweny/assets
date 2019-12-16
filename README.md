@@ -80,4 +80,74 @@ bintray.apiKey=bintray_apikey
 bintray.gpg.password=bintray_gpg_password
 ```
 
+### An example:
+
+一个完整的 build.gradle 结构示例（别忘了还需要一个额外的 properties 文件）——
+
+```grooay
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+group 'org.kweny.carefree'
+version '1.0.1'
+
+sourceCompatibility = 8
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.4.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.0.10.RELEASE'
+    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.1'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.4.RELEASE'
+
+}
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+ext {
+    BINTRAY_REPO = 'maven'
+    BINTRAY_NAME = 'carefree-mongodb-spring-boot-starter'
+
+    PUBLISHED_PACKAGING = 'jar'
+    PUBLISHED_GROUP_ID = 'org.kweny.carefree'
+    PUBLISHED_ARTIFACT_ID = 'carefree-mongodb-spring-boot-starter'
+    PUBLISHED_VERSION = '1.0.1'
+
+    PROJECT_NAME = 'Carefree MongoDB'
+    PROJECT_DESCRIPTION = 'A MongoDB auto-configuration starter for SpringBoot.'
+    PROJECT_WEBSITE_URL = 'https://github.com/kweny/carefree-mongodb-spring-boot-starter'
+    PROJECT_VCS_URL = 'https://github.com/kweny/carefree-mongodb-spring-boot-starter.git'
+    PROJECT_ISSUE_TRACKER_URL = 'https://github.com/kweny/carefree-mongodb-spring-boot-starter/issues'
+
+    DEVELOPER_ID = 'kweny'
+    DEVELIPER_NAME = 'Kweny'
+    DEVELIPER_EMAIL = 'iamkweny@gmail.com'
+
+    LICENSE_NAME = 'The Apache Software License, Version 2.0'
+    LICENSE_URL = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    ALL_LICENSES = ["Apache-2.0"]
+}
+
+apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
+```
+
 ---
