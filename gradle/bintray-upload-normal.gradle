@@ -22,8 +22,8 @@ install {
                 developers {
                     developer {
                         id DEVELOPER_ID
-                        name DEVELIPER_NAME
-                        email DEVELIPER_EMAIL
+                        name DEVELOPER_NAME
+                        email DEVELOPER_EMAIL
                     }
                 }
 
