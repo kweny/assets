@@ -1,11 +1,25 @@
-# assets
+# Assets
+
+积累了一些实用的工具和脚本，目前发布了下面这些——
+
+[TOC]
 
 ## bintray-upload-normal.gradle
+
+这是一个通过 Bintray 向 Maven 中央仓库发布项目的 Gradle 脚本。
+
+### Use in build.gradle:
+
+可直接在 通过 apply 指令引入使用，如下——
+
 ```groovy
 apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
 ```
 
-Dependent build script:
+### Dependent build script:
+
+需要在项目的 Gradle 配置文件中引入 Bintray 官方插件的依赖——
+
 ```groovy
 buildscript {
     ...
@@ -16,7 +30,10 @@ buildscript {
 }
 ```
 
-Dependent custom properties:
+### Dependent custom properties:
+
+同时在项目的 Gradle 配置文件中自定义项目相关信息——
+
 ```groovy
 ext {
     BINTRAY_REPO = 'maven'
@@ -43,14 +60,22 @@ ext {
 }
 ```
 
-Secret properties file:
-```groovy
-IF file('local.properties').exists()
-ELSEIF file('gradle-local.properties').exists()
-ELSE file('gradle.properties')
-```
+### Secret properties file:
+
+Bintray 账号信息需要通过一个额外的 properties 文件来配置，这个文件需要使用特定的名称来命名，按优先级如下——
+
+* local.properties
+* gradle-local.properties
+* gradle.properties
+
+**请记得将这个文件加入到版本工具的忽略规则中（如.gitgnore），以免泄露 Bintray 账号信息。**
+
+这个文件的内容如下——
+
 ```groovy
 bintray.user=bintray_username
 bintray.apiKey=bintray_apikey
 bintray.gpg.password=bintray_gpg_password
 ```
+
+---
