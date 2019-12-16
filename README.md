@@ -70,7 +70,7 @@ Bintray 账号信息需要通过一个额外的 properties 文件来配置，这
 * gradle-local.properties
 * gradle.properties
 
-**请记得将这个文件加入到版本工具的忽略规则中（如.gitgnore），以免泄露 Bintray 账号信息。**
+**如果使用了版本工具来管理代码，请记得将这个文件加入到忽略规则中（如 .gitgnore），以免泄露 Bintray 账号信息。**
 
 这个文件的内容如下——
 
