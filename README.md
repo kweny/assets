@@ -1,8 +1,10 @@
-# Assets
+# Droaket
 
 积累了一些实用的工具和脚本，目前发布了下面这些——
 
 * **bintray-upload-normal.gradle**：一个通过 Bintray 向 Maven 中央仓库发布项目的 Gradle 脚本。
+
+* **skip-module-task.gradle**：Gradle 构建工程时，跳过指定 module 的指定 task。
 
 ---
 
@@ -148,6 +150,27 @@ ext {
 }
 
 apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
+```
+
+## skip-module-task.gradle
+
+在根工程目录下创建如下命名的配置文件（任选其一，也可三者同存，执行时将合并三者内容）——
+
+* local.properties
+* gradle-local.properties
+* gradle.properties
+
+其中内容如下——
+
+```properties
+# 跳过 droaket-core 模块的 test 任务
+gradle.task.test.droaket-core=true
+
+# 跳过 droaket-core 模块的所有任务，即不构建该模块
+gradle.task.droaket-core=true
+
+# 效果等同于未配置，即正常构建 droaket-web 模块
+# gradle.task.droaket-web=false
 ```
 
 ---
