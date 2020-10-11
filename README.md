@@ -156,6 +156,8 @@ apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintra
 
 ## skip-module-task.gradle
 
+将脚本内容复制到根工程 build.gradle 的 `buildscript` 段中。
+
 在根工程目录下创建如下命名的配置文件（任选其一，也可三者同存，执行时将合并三者内容）——
 
 * local.properties
