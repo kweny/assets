@@ -170,7 +170,7 @@ gradle.task.test.droaket-core=true
 gradle.task.droaket-core=true
 
 # 效果等同于未配置，即正常构建 droaket-web 模块
-# gradle.task.droaket-web=false
+gradle.task.droaket-web=false
 ```
 
 ---
