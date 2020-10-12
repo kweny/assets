@@ -4,7 +4,7 @@
 
 * **bintray-upload-normal.gradle**：一个通过 Bintray 向 Maven 中央仓库发布项目的 Gradle 脚本。
 
-* **skip-module-task.gradle**：Gradle 构建工程时，跳过指定 module 的指定 task。
+* **skip-module-task.gradle**：Gradle 构建工程时，设置是否执行指定 module 的指定 task。
 
 ---
 
@@ -167,14 +167,14 @@ apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintra
 其中内容如下——
 
 ```properties
-# 跳过 droaket-core 模块的 test 任务
-gradle.task.test.droaket-core=true
+# 不执行 droaket-core 模块的 test 任务
+gradle.task.test.droaket-core=fasle
 
-# 跳过 droaket-core 模块的所有任务，即不构建该模块
-gradle.task.droaket-core=true
+# 不执行 droaket-core 模块的所有任务，即不构建该模块
+gradle.task.droaket-core=false
 
 # 效果等同于未配置，即正常构建 droaket-web 模块
-gradle.task.droaket-web=false
+gradle.task.droaket-web=true
 ```
 
 ---
