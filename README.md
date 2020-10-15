@@ -4,7 +4,7 @@
 
 * **bintray-upload-normal.gradle**：一个通过 Bintray 向 Maven 中央仓库发布项目的 Gradle 脚本。
 
-* **skip-module-task.gradle**：Gradle 构建工程时，设置是否执行指定 module 的指定 task。
+* **module-task-skippable.gradle**：Gradle 构建工程时，设置是否执行指定 module 的指定 task。
 
 ---
 
@@ -149,32 +149,48 @@ ext {
     ALL_LICENSES = ["Apache-2.0"]
 }
 
-apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
+apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/bintray-upload-normal.gradle'
 ```
 
 ---
 
-## skip-module-task.gradle
+## module-task-skippable.gradle
 
-将脚本内容复制到根工程 build.gradle 的 `buildscript` 段中。
+该脚本用于替代 gradle 构建命令中的 `-x` 或 `--exclude-task` 参数，在打包构建时禁止指定 module 指定 task 的执行。
 
-在根工程目录下创建如下命名的配置文件（任选其一，也可三者同存，执行时将合并三者内容）——
+可以直接在根工程 build.gradle 的 `buildscript` 段中通过 apply 指令引入使用，如下——
 
-* local.properties
-* gradle-local.properties
+```groovy
+apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/module-task-skippable.gradle'
+```
+
+也可以将脚本内容复制到根工程 build.gradle 的 `buildscript` 段中。
+
+
+在根工程目录下创建如下命名的配置文件——
+
 * gradle.properties
+* gradle-local.properties
+* local.properties
+
+以上三个文件可以任选其一，也可以同时存在。若同时存在，执行时将合并三者内容，若不同文件中存在同名的配置，则按优先级 `local.properties` > `gradle-local.priperties` > `gradle.properties` 的顺序进行覆盖。
 
 其中内容如下——
 
 ```properties
-# 不执行 droaket-core 模块的 test 任务
-gradle.task.test.droaket-core=fasle
+# 不执行 droaket-web 模块的 test 任务
+gradle.task.test.droaket-web.enabled=fasle
 
-# 不执行 droaket-core 模块的所有任务，即不构建该模块
-gradle.task.droaket-core=false
+# 不执行 droaket-web 模块的所有任务，即不构建该模块
+gradle.task.droaket-web.enabled=false
 
-# 效果等同于未配置，即正常构建 droaket-web 模块
-gradle.task.droaket-web=true
+# 不执行所有模块的 test 任务
+gradle.task.test.enabled=false
+
+# 等同于未配置，即正常构建 droaket-core 模块
+gradle.task.droaket-core.enabled=true
 ```
+
+**注意：通过该脚本禁止的 task，即使使用 `gradle TaskName` 命令也不会执行，可以在命令行中指定 `-Pforce-tasks` 参数来强制执行所有 task。**
 
 ---
