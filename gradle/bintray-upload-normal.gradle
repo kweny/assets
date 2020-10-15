@@ -69,12 +69,14 @@ artifacts {
 }
 
 Properties properties = new Properties()
+if (project.rootProject.file('gradle.properties').exists()) {
+    properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
+}
+if (project.rootProject.file('gradle-local.properties').exists()) {
+    properties.load(project.rootProject.file('gradle-local.properties').newDataInputStream())
+}
 if (project.rootProject.file('local.properties').exists()) {
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-} else if (project.rootProject.file('gradle-local.properties').exists()) {
-    properties.load(project.rootProject.file('gradle-local.properties').newDataInputStream())
-} else {
-    properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
 }
 
 bintray {

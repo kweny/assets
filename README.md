@@ -66,11 +66,11 @@ ext {
 
 ### Secret properties file:
 
-Bintray 账号信息需要通过一个额外的 properties 文件来配置，这个文件需要使用特定的名称来命名，按优先级如下——
+Bintray 账号信息需要通过一个额外的 properties 文件来配置，这个文件需要使用特定的名称来命名，按优先级递增如下——
 
-* local.properties
-* gradle-local.properties
 * gradle.properties
+* gradle-local.properties
+* local.properties
 
 **如果使用了版本工具来管理代码，请记得将这个文件加入到忽略规则中（如 .gitgnore），以免泄露 Bintray 账号信息。**
 
@@ -175,6 +175,8 @@ apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/modul
 
 以上三个文件可以任选其一，也可以同时存在。若同时存在，执行时将合并三者内容，若不同文件中存在同名的配置，则按优先级 `local.properties` > `gradle-local.priperties` > `gradle.properties` 的顺序进行覆盖。
 
+如果使用了版本工具来管理代码，可以将 `gradle-local.properties` 和 `local.properties` 加入到忽略列表中（如 .gitignore），如此线上 CI/CD 使用 `gradle.properties`，而本地开发调试时则由优先级更高的 `[gradle-]local.properties` 覆盖。
+
 其中内容如下——
 
 ```properties
@@ -190,6 +192,8 @@ gradle.task.test.enabled=false
 # 等同于未配置，即正常构建 droaket-core 模块
 gradle.task.droaket-core.enabled=true
 ```
+
+此外，也支持直接在命令行中使用 `-P` 参数来设置，如 `gradle build -Pgradle.task.test.droaket-core.enabled=false -Pgradle.task.duraket-web.enabled=false`。
 
 **注意：通过该脚本禁止的 task，即使使用 `gradle TaskName` 命令也不会执行，可以在命令行中指定 `-Pforce-tasks` 参数来强制执行所有 task。**
 
