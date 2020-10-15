@@ -17,7 +17,7 @@
 可直接在配置文件 build.gradle 中通过 apply 指令引入使用，如下——
 
 ```groovy
-apply from: 'https://raw.githubusercontent.com/kweny/assets/master/gradle/bintray-upload-normal.gradle'
+apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/bintray-upload-normal.gradle'
 ```
 
 ### Dependent build script:
