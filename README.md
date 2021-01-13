@@ -17,7 +17,7 @@
 可直接在配置文件 build.gradle 中通过 apply 指令引入使用，如下——
 
 ```groovy
-apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/bintray-upload-normal.gradle'
+apply from: 'https://raw.githubusercontent.com/kweny/doraket/master/gradle/bintray-upload-normal.gradle'
 ```
 
 ### Dependent build script:
@@ -161,7 +161,7 @@ apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/bintr
 可以直接在根工程 build.gradle 的 `buildscript` 段中通过 apply 指令引入使用，如下——
 
 ```groovy
-apply from: 'https://raw.githubusercontent.com/kweny/droaket/master/gradle/module-task-skippable.gradle'
+apply from: 'https://raw.githubusercontent.com/kweny/doraket/master/gradle/module-task-skippable.gradle'
 ```
 
 也可以将脚本内容复制到根工程 build.gradle 的 `buildscript` 段中。
